@@ -1,1 +1,183 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Hexo</title><meta name="description" content="A Blog Powered By Hexo"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://yoursite.com/atom.xml" title="Hexo"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://github.com/jijigo" target="_blank" class="nav-list-link">GITHUB</a></li></ul></header><main class="container"><div class="archive"><h2 class="archive-year">2018</h2><div class="post-item"><div class="post-info">Dec 19, 2018</div><a href="/2018/12/19/vuex-two-ways-data-binding/" class="post-title-link">vuex two ways data binding</a></div></div></main><footer><div class="paginator"></div><div class="copyright"><p>© 2018 <a href="http://yoursite.com">Debby ji</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head>
+    <meta charset="utf-8">
+<title>Tag: DataBinding - Debby&#39;s Playground</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+<link rel="stylesheet" href="/css/style.css">
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+
+</head>
+<body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item navbar-logo" href="/">
+                
+                <img src="/images/logo.png" alt="" height="28">
+                
+            </a>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            
+            
+        </div>
+    </div>
+</nav>
+
+    <section class="section section-heading">
+    <div class="container">
+        <div class="content">
+            <h5>#DataBinding</h5>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="container">
+    
+        <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            <a href="/2018/12/19/vuex-two-ways-data-binding/" itemprop="url">vuex two ways data binding</a>
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            <time datetime="2018-12-19T15:05:59.000Z" itemprop="datePublished">Dec 19 2018</time>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            4 minutes de lectura (Alrededor de 670 palabras)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <p>我們都知道vue很大的特性就是可以做到 <a href="https://vuejs.org/v2/guide/forms.html" target="_blank" rel="noopener">two-way data binding</a> ，並且很簡單，只要透過 <code>v-model</code> 綁定 data的值即可，如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input v-model=&quot;message&quot; placeholder=&quot;edit me&quot;&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  data: &#123;</span><br><span class="line">    message: <span class="string">''</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>除了form元件（input, textarea, and select）之外，<a href="https://vuejs.org/v2/guide/components.html#Using-v-model-on-Components" target="_blank" rel="noopener">custom component</a> 也可以做到。</p>
+<p>不過 Vuex 也想做到 <code>two-way data binding</code> 該怎麼做呢</p>
+<h2 id="原來的做法"><a href="#原來的做法" class="headerlink" title="原來的做法"></a>原來的做法</h2><p>假設目前有一個 component 和一個 vuex ，component 會需要從 vuex 取值也會賦值，也就是想要實現 <code>two-way data binding</code></p>
+<p>簡單的 vuex 範例，state 裡存放 filters 的狀態，透過 actions 跟 mutations 去呼叫並改變 state 值，如果會 vuex 的話應該看得懂</p>
+<p><em>Store.js</em><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> state = &#123;</span><br><span class="line">    filters: &#123;</span><br><span class="line">        type: <span class="string">'rent'</span>,</span><br><span class="line">        regions: [<span class="string">'七堵區'</span>],</span><br><span class="line">        keyword: <span class="string">'123'</span></span><br><span class="line">    &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> actions = &#123;</span><br><span class="line">    setFilter(&#123;state, commit&#125;, filter) &#123;</span><br><span class="line">        commit(<span class="string">'SET_FILTER'</span>, filter);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> mutations = &#123;</span><br><span class="line">    SET_FILTER: <span class="function">(<span class="params">state, filters</span>) =&gt;</span> &#123;</span><br><span class="line">        _.forEach(filters, (value, key) =&gt; &#123;</span><br><span class="line">            state.filters[key] = value;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>這邊是精簡後的 component</p>
+<p><em>vue component</em></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;select v-model=<span class="string">"regions"</span> /&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">export default &#123;</span></span><br><span class="line"><span class="regexp">    data() &#123;</span></span><br><span class="line"><span class="regexp">        return &#123;</span></span><br><span class="line"><span class="regexp">            regions: []</span></span><br><span class="line"><span class="regexp">        &#125;;</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">    computed: &#123;</span></span><br><span class="line"><span class="regexp">        ...mapState(&#123;</span></span><br><span class="line"><span class="regexp">            regionsState: state =&gt; state.filters.regions</span></span><br><span class="line"><span class="regexp">        &#125;),</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">    watch: &#123;</span></span><br><span class="line"><span class="regexp">        regions(value) &#123;</span></span><br><span class="line"><span class="regexp">            this.setFilter(&#123;'regions': value&#125;);</span></span><br><span class="line"><span class="regexp">        &#125;</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">    created() &#123;</span></span><br><span class="line"><span class="regexp">        this.regions = this.regionsState;</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">    methods: &#123;</span></span><br><span class="line"><span class="regexp">        ...mapActions(['setFilter']),</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">&#125;;</span></span><br></pre></td></tr></table></figure>
+<p>來解釋一下，在這個component中，引入了另一個 custom component: select，並跟 data 綁了 v-model<br>由於要實現雙向綁定，分別從vuex取值及賦值</p>
+<p>取值：先從 <code>mapState</code> 取值，並在 <code>created</code> 階段時將值給了 data，於是select component便得到初始值<br>賦值：利用 <code>watch</code> 監聽 data 值，只要值有變動，就執行 <code>mapActions</code> 去更動vuex的state</p>
+<h2 id="調整"><a href="#調整" class="headerlink" title="調整"></a>調整</h2><p>經過調整後，程式碼如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;select v-model=<span class="string">"regions"</span> /&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">export default &#123;</span></span><br><span class="line"><span class="regexp">    /</span><span class="regexp">/ data() &#123;</span></span><br><span class="line"><span class="regexp">    /</span><span class="regexp">/     return &#123;</span></span><br><span class="line"><span class="regexp">    /</span><span class="regexp">/         regions: []</span></span><br><span class="line"><span class="regexp">    /</span><span class="regexp">/     &#125;;</span></span><br><span class="line"><span class="regexp">    /</span><span class="regexp">/ &#125;,</span></span><br><span class="line"><span class="regexp">    computed: &#123;</span></span><br><span class="line"><span class="regexp">        ...mapState(&#123;</span></span><br><span class="line"><span class="regexp">            regionsState: state =&gt; state.Search.filters.regions</span></span><br><span class="line"><span class="regexp">        &#125;),</span></span><br><span class="line"><span class="regexp">        regions: &#123;</span></span><br><span class="line"><span class="regexp">            get() &#123;</span></span><br><span class="line"><span class="regexp">                return this.regionsState;</span></span><br><span class="line"><span class="regexp">            &#125;,</span></span><br><span class="line"><span class="regexp">            set(value) &#123;</span></span><br><span class="line"><span class="regexp">                this.setFilter(&#123;'regions': value&#125;);</span></span><br><span class="line"><span class="regexp">            &#125;</span></span><br><span class="line"><span class="regexp">        &#125;</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">    /</span><span class="regexp">/ watch: &#123;</span></span><br><span class="line"><span class="regexp">    /</span><span class="regexp">/     regions(value) &#123;</span></span><br><span class="line"><span class="regexp">    /</span><span class="regexp">/         this.setFilter(&#123;'regions': value&#125;);</span></span><br><span class="line"><span class="regexp">    /</span><span class="regexp">/     &#125;</span></span><br><span class="line"><span class="regexp">    /</span><span class="regexp">/ &#125;,</span></span><br><span class="line"><span class="regexp">    /</span><span class="regexp">/ created() &#123;</span></span><br><span class="line"><span class="regexp">    /</span><span class="regexp">/     this.regions = this.regionsState;</span></span><br><span class="line"><span class="regexp">    /</span><span class="regexp">/ &#125;,</span></span><br><span class="line"><span class="regexp">    methods: &#123;</span></span><br><span class="line"><span class="regexp">        ...mapActions('Search', ['setFilter']),</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>一樣是 v-model綁值，只是綁的值改在computed，利用 computed 的 set與get特性來做取值與賦值</p>
+<p>取值：從 computed 的 <code>get</code> 取得 <code>mapState</code><br>賦值：computed 的值若有變動，在 <code>set</code> 去執行 <code>mapActions</code></p>
+<p>這樣就可以少了 data, watch, created 這些程式碼，利用 computed 去做這些事</p>
+<h2 id="結尾"><a href="#結尾" class="headerlink" title="結尾"></a>結尾</h2><p>在會用 vuex 後，其實都是用第一種作法，或是剛好都沒用到 <code>v-model</code><br>最近在用的時候靈機一想並上網搜尋後，才發現有這樣好用的做法，並且官方 <a href="https://vuex.vuejs.org/guide/forms.html" target="_blank" rel="noopener">Vuex - Form Handling</a> 其實也有提到</p>
+<p>看來真的沒事就要看看官方文件 :smile:</p>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://markus.oberlehner.net/blog/form-fields-two-way-data-binding-and-vuex/" target="_blank" rel="noopener">Form Fields, Two-Way Data Binding and Vuex</a></li>
+<li><a href="https://itnext.io/anyway-this-is-how-to-use-v-model-with-vuex-computed-setter-in-action-320eb682c976" target="_blank" rel="noopener">Anyway, this is how to use v-model with Vuex. Computed setter in action.</a></li>
+<li><a href="https://vuex.vuejs.org/guide/forms.html" target="_blank" rel="noopener">Vuex - Form Handling</a></li>
+</ul>
+
+    
+    </div>
+    
+    
+</article>
+
+
+
+
+    
+    
+    </div>
+</section>
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                &copy; 2019 Debby ji&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            
+        </div>
+    </div>
+</footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("default");
+</script>
+
+
+
+<script src="/js/script.js"></script>
+
+    
+</body>
+</html>
